@@ -8,6 +8,18 @@ module WordBasket
 
     # public class methods
 
+    describe '.convert_head_index' do
+      context 'with "パーフェクト"' do
+        it { expect(Word.convert_head_index('パーフェクト')).to eq 'は' }
+      end
+    end
+
+    describe '.convert_last_index' do
+      context 'with "ウォーミングアップ"' do
+        it { expect(Word.convert_last_index('ウォーミングアップ')).to eq 'ふ' }
+      end
+    end
+
     context '"わーどばすけっと", "わーばす", "ばすけっと" saved' do
       before do
         Word.create('わーどばすけっと')
@@ -31,18 +43,6 @@ module WordBasket
     end
 
     # private class methods
-
-    describe '.convert_head_index' do
-      context 'with "パーフェクト"' do
-        it { expect(Word.send(:convert_head_index, 'パーフェクト')).to eq 'は' }
-      end
-    end
-
-    describe '.convert_last_index' do
-      context 'with "ウォーミングアップ"' do
-        it { expect(Word.send(:convert_last_index, 'ウォーミングアップ')).to eq 'ふ' }
-      end
-    end
 
     describe '.convert_char_index' do
       context 'with "ガ"' do
