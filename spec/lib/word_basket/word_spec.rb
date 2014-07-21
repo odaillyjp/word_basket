@@ -62,8 +62,18 @@ module WordBasket
     it { is_expected.to respond_to(:head) }
     it { is_expected.to respond_to(:last) }
 
-    describe '#name' do
-      it { expect(word.name).to eq 'あいうえお' }
+    context '#new with "あいうえお"' do
+      describe '#name' do
+        it { expect(word.name).to eq 'あいうえお' }
+      end
+
+      describe '#head' do
+        it { expect(word.head).to eq 'あ' }
+      end
+
+      describe '#last' do
+        it { expect(word.last).to eq 'お' }
+      end
     end
   end
 end
