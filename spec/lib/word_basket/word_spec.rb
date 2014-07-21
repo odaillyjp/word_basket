@@ -6,9 +6,7 @@ module WordBasket
     let(:word) { Word.new('あいうえお') }
     subject { word }
 
-    it { is_expected.to respond_to(:name) }
-    it { is_expected.to respond_to(:head) }
-    it { is_expected.to respond_to(:last) }
+    # public class methods
 
     context '"わーどばすけっと", "わーばす", "ばすけっと" saved' do
       before do
@@ -32,18 +30,40 @@ module WordBasket
       end
     end
 
-    # public methods
+    # private class methods
+
+    describe '.convert_head_index' do
+      context 'with "パーフェクト"' do
+        it { expect(Word.send(:convert_head_index, 'パーフェクト')).to eq 'は' }
+      end
+    end
+
+    describe '.convert_last_index' do
+      context 'with "ウォーミングアップ"' do
+        it { expect(Word.send(:convert_last_index, 'ウォーミングアップ')).to eq 'ふ' }
+      end
+    end
+
+    describe '.convert_char_index' do
+      context 'with "ガ"' do
+        it { expect(Word.send(:convert_char_index, 'ガ')).to eq 'か' }
+      end
+    end
+
+    describe '.remove_dakuten' do
+      context 'with "ざ"' do
+        it { expect(Word.send(:remove_dakuten, 'ざ')).to eq 'さ' }
+      end
+    end
+
+    # public instance methods
+
+    it { is_expected.to respond_to(:name) }
+    it { is_expected.to respond_to(:head) }
+    it { is_expected.to respond_to(:last) }
 
     describe '#name' do
       it { expect(word.name).to eq 'あいうえお' }
-    end
-
-    # private methods
-
-    describe '#remove_dakuten' do
-      context 'with "が"' do
-        it { expect(word.send(:remove_dakuten, 'が')).to eq 'か' }
-      end
     end
   end
 end
