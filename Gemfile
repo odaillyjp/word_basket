@@ -1,5 +1,8 @@
 source 'https://rubygems.org/'
 
+gem 'moji'
+gem 'unf'
+
 group :development do
   gem 'guard'
   gem 'guard-rspec'
