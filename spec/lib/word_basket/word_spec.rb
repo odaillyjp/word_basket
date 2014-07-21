@@ -37,5 +37,9 @@ module WordBasket
         end
       end
     end
+
+    describe '#name' do
+      it { expect(word.name).to eq 'あいうえお' }
+    end
   end
 end
