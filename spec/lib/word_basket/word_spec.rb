@@ -30,16 +30,20 @@ module WordBasket
           it { expect(Word.sample(head: 'お', last: 'と')).to be_nil }
         end
       end
-
-      describe '.remove_dakuten' do
-        context 'with "が"' do
-          it { expect(Word.send(:remove_dakuten, 'が')).to eq 'か' }
-        end
-      end
     end
+
+    # public methods
 
     describe '#name' do
       it { expect(word.name).to eq 'あいうえお' }
+    end
+
+    # private methods
+
+    describe '#remove_dakuten' do
+      context 'with "が"' do
+        it { expect(word.send(:remove_dakuten, 'が')).to eq 'か' }
+      end
     end
   end
 end
