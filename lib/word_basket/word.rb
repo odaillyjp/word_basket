@@ -40,5 +40,13 @@ module WordBasket
       @head = Word.convert_head_index(name)
       @last = Word.convert_last_index(name)
     end
+
+    def to_json
+      data = instance_variables.map do |variable|
+        "\"#{variable[1..-1]}\":\"#{instance_variable_get(variable)}\""
+      end
+
+      "{#{data.join(',')}}"
+    end
   end
 end
