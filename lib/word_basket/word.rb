@@ -8,6 +8,12 @@ module WordBasket
     # class methods
 
     class << self
+      def create(name)
+        word = Word.new(name)
+        #database.set(word)
+        word
+      end
+
       def convert_head_index(name)
         convert_char_index(name[0])
       end
