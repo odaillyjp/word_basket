@@ -7,7 +7,7 @@ module WordBasket
       BASE_URL = "https://#{APP_NAME}.firebaseio.com/"
 
       def set(data)
-        firebase = Firebase::Client.new(BASE_URL)
+        firebase = ::Firebase::Client.new(BASE_URL)
         response = firebase.set('words', data)
         response.success?
       end
