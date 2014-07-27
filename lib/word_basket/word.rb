@@ -7,38 +7,18 @@ module WordBasket
 
     # class methods
 
-    class << self
-      def create(name)
-        word = Word.new(name)
-        config.database.set(word)
-        word
-      end
-
-      def convert_head_index(name)
-        convert_char_index(name[0])
-      end
-
-      def convert_last_index(name)
-        convert_char_index(name[-1])
-      end
-
-      private
-
-      def convert_char_index(char)
-        remove_dakuten(Moji.kata_to_hira(char))
-      end
-
-      def remove_dakuten(char)
-        char.to_nfd.split('').first
-      end
+    def self.create(name)
+      word = Word.new(name)
+      word.save
+      word
     end
 
     # instance methods
 
     def initialize(name)
       @name = name
-      @head = Word.convert_head_index(name)
-      @last = Word.convert_last_index(name)
+      @head = convert_head_index(name)
+      @last = convert_last_index(name)
     end
 
     def to_json
@@ -47,6 +27,28 @@ module WordBasket
       end
 
       "{#{data.join(',')}}"
+    end
+
+    def save
+      WordBasket.config.database.set(self)
+    end
+
+    private
+
+    def convert_head_index(name)
+      convert_char_index(name[0])
+    end
+
+    def convert_last_index(name)
+      convert_char_index(name[-1])
+    end
+
+    def convert_char_index(char)
+      remove_dakuten(Moji.kata_to_hira(char))
+    end
+
+    def remove_dakuten(char)
+      char.to_nfd.split('').first
     end
   end
 end
