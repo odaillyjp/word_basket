@@ -10,7 +10,7 @@ module WordBasket
     class << self
       def create(name)
         word = Word.new(name)
-        #database.set(word)
+        config.database.set(word)
         word
       end
 
