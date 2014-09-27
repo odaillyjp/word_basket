@@ -47,10 +47,6 @@ module WordBasket
       describe '#last' do
         it { expect(word.last).to eq 'お' }
       end
-
-      describe '#to_json' do
-        it { expect(word.to_json).to eq '{"name":"あいうえお","head":"あ","last":"お"}' }
-      end
     end
 
     describe '#convert_head_index' do
