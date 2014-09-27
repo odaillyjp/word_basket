@@ -3,8 +3,7 @@ module WordBasket
     require 'firebase'
 
     class Firebase
-      APP_NAME = 'odailly-wordbaskets'
-      BASE_URL = "https://#{APP_NAME}.firebaseio.com/"
+      BASE_URL = "https://#{ENV['FIREBASE_APP_NAME']}.firebaseio.com/"
 
       def set(data)
         firebase = ::Firebase::Client.new(BASE_URL)
