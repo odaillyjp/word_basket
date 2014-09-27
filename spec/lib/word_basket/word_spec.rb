@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'word_basket/word'
 
 module WordBasket
   describe Word do
