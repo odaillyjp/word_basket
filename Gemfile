@@ -3,6 +3,7 @@ source 'https://rubygems.org/'
 gem 'moji'
 gem 'unf'
 gem 'firebase'
+gem 'activesupport'
 
 group :development do
   gem 'guard'
