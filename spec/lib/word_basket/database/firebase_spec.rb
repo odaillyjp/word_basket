@@ -7,7 +7,7 @@ module WordBasket
 
     context '#new with "あいうえお"' do
       describe '#to_json' do
-        it { expect(word.to_json).to eq '{ "あ": { "お": { "name": "あいうえお" }}}' }
+        it { expect(word.to_json).to eq '{ "あいうえお": "あいうえお" }' }
       end
     end
   end

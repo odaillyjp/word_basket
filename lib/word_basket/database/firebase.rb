@@ -1,16 +1,19 @@
 module WordBasket
   module Database
     require 'firebase'
+    require 'uri'
 
     class Firebase
-      BASE_URL = "https://#{ENV['FIREBASE_APP_NAME']}.firebaseio.com/"
+      ROOT_NAME = 'words'
+      BASE_URL  = "https://#{ENV['FIREBASE_APP_NAME']}.firebaseio.com/"
 
       def initialize
         @client = ::Firebase::Client.new(BASE_URL)
       end
 
       def set(data)
-        response = @client.set('words', data)
+        path = URI.escape("#{ROOT_NAME}/#{data.head}/#{data.last}")
+        response = @client.set(path, data)
         response.success?
       end
     end
@@ -18,7 +21,7 @@ module WordBasket
 
   Word.class_eval do
     def to_json
-      "{ \"#{@head}\": { \"#{@last}\": { \"name\": \"#{@name}\" }}}"
+      "{ \"#{@name}\": \"#{@name}\" }"
     end
   end
 end
