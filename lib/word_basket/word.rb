@@ -21,14 +21,6 @@ module WordBasket
       @last = convert_last_index(name)
     end
 
-    def to_json
-      data = instance_variables.map do |variable|
-        "\"#{variable[1..-1]}\":\"#{instance_variable_get(variable)}\""
-      end
-
-      "{#{data.join(',')}}"
-    end
-
     def save
       WordBasket.config.database.set(self)
     end

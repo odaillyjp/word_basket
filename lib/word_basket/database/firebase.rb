@@ -12,4 +12,10 @@ module WordBasket
       end
     end
   end
+
+  Word.class_eval do
+    def to_json
+      "{ \"#{@head}\": { \"#{@last}\": { \"name\": \"#{@name}\" }}}"
+    end
+  end
 end
