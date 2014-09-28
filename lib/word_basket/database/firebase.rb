@@ -16,6 +16,13 @@ module WordBasket
         response = @client.set(path, data)
         response.success?
       end
+
+      def sample(data)
+        @words ||= @client.get(ROOT_NAME).body
+        if @words[data.head] && @words[data.head][data.last]
+          @words[data.head][data.last].keys.sample
+        end
+      end
     end
   end
 

@@ -13,6 +13,11 @@ module WordBasket
       word
     end
 
+    def self.sample(query)
+      name = WordBasket.config.database.sample(WordQuery.new(query))
+      Word.new(name) if name
+    end
+
     # instance methods
 
     def initialize(name)
@@ -41,6 +46,15 @@ module WordBasket
 
     def remove_dakuten(char)
       char.to_nfd.split('').first
+    end
+
+    class WordQuery
+      attr_reader :head, :last
+
+      def initialize(query)
+        @head = query[:head]
+        @last = query[:last]
+      end
     end
   end
 end
