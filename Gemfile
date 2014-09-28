@@ -17,4 +17,5 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec'
   gem 'awesome_print'
+  gem 'dotenv'
 end
