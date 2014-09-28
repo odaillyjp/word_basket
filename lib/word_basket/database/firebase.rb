@@ -12,7 +12,7 @@ module WordBasket
       end
 
       def set(data)
-        path = URI.escape("#{ROOT_NAME}/#{data.head}/#{data.last}")
+        path = generate_path(data)
         response = @client.set(path, data)
         response.success?
       end
@@ -22,6 +22,13 @@ module WordBasket
         if @words[data.head] && @words[data.head][data.last]
           @words[data.head][data.last].keys.sample
         end
+      end
+
+      private
+
+      def generate_path(data)
+        path = [ROOT_NAME, data.head, data.last].join('/')
+        URI.escape(path)
       end
     end
   end
