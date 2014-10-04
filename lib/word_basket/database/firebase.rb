@@ -12,8 +12,7 @@ module WordBasket
       end
 
       def set(data)
-        path = generate_path(data)
-        response = @client.set(path, data)
+        response = @client.set(generate_path(data), data)
         response.success?
       end
 
