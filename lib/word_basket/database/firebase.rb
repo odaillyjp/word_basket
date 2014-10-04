@@ -13,14 +13,14 @@ module WordBasket
 
       def set(data)
         path = generate_path(data)
-        response = @client.set(path, data)
+        response = @client.push(path, data)
         response.success?
       end
 
       def sample(data)
         @words ||= @client.get(ROOT_NAME).body
         if @words[data.head] && @words[data.head][data.last]
-          @words[data.head][data.last].keys.sample
+          @words[data.head][data.last].values.sample['name']
         end
       end
 
@@ -35,7 +35,7 @@ module WordBasket
 
   Word.class_eval do
     def to_json
-      "{ \"#{@name}\": \"#{@name}\" }"
+      "{ \"name\": \"#{@name}\", \"\head\": \"#{@head}\", \"last\": \"#{@last}\" }"
     end
   end
 end
