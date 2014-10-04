@@ -1,9 +1,11 @@
 source 'https://rubygems.org/'
 
+ruby '2.1.2'
+
+gem 'activesupport'
+gem 'firebase'
 gem 'moji'
 gem 'unf'
-gem 'firebase'
-gem 'activesupport'
 
 group :development do
   gem 'guard'
@@ -13,9 +15,9 @@ group :development do
 end
 
 group :development, :test do
+  gem 'awesome_print'
+  gem 'dotenv'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec'
-  gem 'awesome_print'
-  gem 'dotenv'
 end
