@@ -12,7 +12,7 @@ module WordBasket
 
     # db_nameで指定したデータベースを使用可能な状態にする
     def configure_database(database_name)
-      require("word_basket/database/#{database_name}.rb")
+      require_relative("database/#{database_name}")
       @database = WordBasket::Database.const_get(database_name.classify).new
     rescue
       # TODO: エラー処理
