@@ -1,6 +1,7 @@
 module WordBasket
   require 'moji'
   require 'unf'
+  require 'ostruct'
 
   class Word
     attr_reader :name, :head, :last
@@ -14,7 +15,7 @@ module WordBasket
     end
 
     def self.sample(query)
-      name = WordBasket.config.database.sample(WordQuery.new(query))
+      name = WordBasket.config.database.sample(OpenStruct.new(query))
       Word.new(name) if name
     end
 
@@ -46,15 +47,6 @@ module WordBasket
 
     def remove_dakuten(char)
       char.to_nfd.split('').first
-    end
-
-    class WordQuery
-      attr_reader :head, :last
-
-      def initialize(query)
-        @head = query[:head]
-        @last = query[:last]
-      end
     end
   end
 end
