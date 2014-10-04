@@ -13,7 +13,7 @@ module WordBasket
 
       def set(data)
         path = generate_path(data)
-        response = @client.push(path, data)
+        response = @client.set(path, data)
         response.success?
       end
 
@@ -26,7 +26,7 @@ module WordBasket
       private
 
       def generate_path(data)
-        path = [ROOT_NAME, data.head, data.last].join('/')
+        path = [ROOT_NAME, data.head, data.last, data.name].join('/')
         URI.escape(path)
       end
     end
