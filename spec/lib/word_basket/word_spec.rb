@@ -32,11 +32,16 @@ module WordBasket
     # public instance methods
 
     it { is_expected.to respond_to(:name) }
+    it { is_expected.to respond_to(:furigana) }
     it { is_expected.to respond_to(:head) }
     it { is_expected.to respond_to(:last) }
 
     context '#new with "あいうえお"' do
       describe '#name' do
+        it { expect(word.name).to eq 'あいうえお' }
+      end
+
+      describe '#furigana' do
         it { expect(word.name).to eq 'あいうえお' }
       end
 

@@ -4,7 +4,7 @@ module WordBasket
   require 'ostruct'
 
   class Word
-    attr_reader :name, :head, :last
+    attr_reader :name, :furigana, :head, :last
 
     # class methods
 
@@ -21,10 +21,11 @@ module WordBasket
 
     # instance methods
 
-    def initialize(name)
-      @name = name
-      @head = convert_head_index(name)
-      @last = convert_last_index(name)
+    def initialize(name, furigana = nil)
+      @name     = name
+      @furigana = furigana || name
+      @head     = convert_head_index(@furigana)
+      @last     = convert_last_index(@furigana)
     end
 
     def save
@@ -33,12 +34,12 @@ module WordBasket
 
     private
 
-    def convert_head_index(name)
-      convert_char_index(name[0])
+    def convert_head_index(furigana)
+      convert_char_index(furigana[0])
     end
 
-    def convert_last_index(name)
-      convert_char_index(name[-1])
+    def convert_last_index(furigana)
+      convert_char_index(furigana[-1])
     end
 
     def convert_char_index(char)

@@ -33,7 +33,7 @@ module WordBasket
 
   Word.class_eval do
     def to_json
-      "{ \"name\": \"#{@name}\", \"\head\": \"#{@head}\", \"last\": \"#{@last}\" }"
+      "{ \"name\": \"#{@name}\", \"furigana\": \"#{@furigana}\" }"
     end
   end
 end
