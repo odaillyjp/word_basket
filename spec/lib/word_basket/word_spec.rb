@@ -2,9 +2,6 @@ require 'spec_helper'
 
 module WordBasket
   describe Word do
-    let(:word) { Word.new('あいうえお') }
-    subject { word }
-
     # public class methods
 
     context '"わーどばすけっと", "わーばす", "ばすけっと" saved' do
@@ -31,50 +28,52 @@ module WordBasket
 
     # public instance methods
 
-    it { is_expected.to respond_to(:name) }
-    it { is_expected.to respond_to(:furigana) }
-    it { is_expected.to respond_to(:head) }
-    it { is_expected.to respond_to(:last) }
+    context '#new with "ウォーミングアップ"' do
+      let(:word) { Word.new('ウォーミングアップ') }
+      subject { word }
 
-    context '#new with "あいうえお"' do
       describe '#name' do
-        it { expect(word.name).to eq 'あいうえお' }
+        it { expect(word.name).to eq 'ウォーミングアップ' }
       end
 
       describe '#furigana' do
-        it { expect(word.name).to eq 'あいうえお' }
+        it { expect(word.furigana).to eq 'うぉーみんぐあっぷ' }
       end
 
       describe '#head' do
-        it { expect(word.head).to eq 'あ' }
+        it { expect(word.head).to eq 'う' }
       end
 
       describe '#last' do
-        it { expect(word.last).to eq 'お' }
+        it { expect(word.last).to eq 'ふ' }
       end
-    end
 
-    describe '#convert_head_index' do
-      context 'with "パーフェクト"' do
-        it { expect(word.send(:convert_head_index, 'パーフェクト')).to eq 'は' }
+      # private instance methods
+
+      describe '#include_hira_or_kata_only?'do
+        context 'with "ひらがなカタカナ"' do
+          it { expect(word.send(:include_hira_or_kata_only?, 'ひらがなカタカナ')).to be_truthy }
+        end
+
+        context 'with "かんじ漢字かんじ"' do
+          it { expect(word.send(:include_hira_or_kata_only?, 'かんじ漢字かんじ')).to be_falsy }
+        end
       end
-    end
 
-    describe '#convert_last_index' do
-      context 'with "ウォーミングアップ"' do
-        it { expect(word.send(:convert_last_index, 'ウォーミングアップ')).to eq 'ふ' }
+      describe '#convert_to_hira' do
+        context 'with "パーフェクト"' do
+          it { expect(word.send(:convert_to_hira, 'パーフェクト')).to eq 'ぱーふぇくと' }
+        end
       end
-    end
 
-    describe '#convert_char_index' do
-      context 'with "ガ"' do
-        it { expect(word.send(:convert_char_index, 'ガ')).to eq 'か' }
-      end
-    end
+      describe '#remove_dakuten_form_char' do
+        context 'with "ざ"' do
+          it { expect(word.send(:remove_dakuten_from_char, 'ざ')).to eq 'さ' }
+        end
 
-    describe '#remove_dakuten' do
-      context 'with "ざ"' do
-        it { expect(word.send(:remove_dakuten, 'ざ')).to eq 'さ' }
+        context 'with "ぱ"' do
+          it { expect(word.send(:remove_dakuten_from_char, 'ぱ')).to eq 'は' }
+        end
       end
     end
   end

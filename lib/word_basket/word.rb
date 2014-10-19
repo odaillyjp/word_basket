@@ -22,10 +22,13 @@ module WordBasket
     # instance methods
 
     def initialize(name, furigana = nil)
+      # 振り仮名がNullで、かつ単語名に「ひらがな」「カタカナ」以外が含まれている場合は例外発生
+      fail '「振り仮名」が登録されていません。' if furigana.nil? && !include_hira_or_kata_only?(name)
+
       @name     = name
-      @furigana = furigana || name
-      @head     = convert_head_index(@furigana)
-      @last     = convert_last_index(@furigana)
+      @furigana = furigana || convert_to_hira(name)
+      @head     = remove_dakuten_from_char(@furigana[0])
+      @last     = remove_dakuten_from_char(@furigana[-1])
     end
 
     def save
@@ -34,19 +37,15 @@ module WordBasket
 
     private
 
-    def convert_head_index(furigana)
-      convert_char_index(furigana[0])
+    def include_hira_or_kata_only?(str)
+      str.chars.all? { |char| Moji.type?(char, Moji::ZEN_HIRA | Moji::ZEN_KATA | Moji::ZEN_JSYMBOL) }
     end
 
-    def convert_last_index(furigana)
-      convert_char_index(furigana[-1])
+    def convert_to_hira(str)
+      Moji.kata_to_hira(str)
     end
 
-    def convert_char_index(char)
-      remove_dakuten(Moji.kata_to_hira(char))
-    end
-
-    def remove_dakuten(char)
+    def remove_dakuten_from_char(char)
       char.to_nfd.split('').first
     end
   end
