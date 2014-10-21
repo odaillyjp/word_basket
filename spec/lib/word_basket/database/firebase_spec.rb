@@ -12,4 +12,12 @@ module WordBasket
       end
     end
   end
+
+  describe Firebase do
+    let(:firebase) { WordBasket::Database::Firebase.new }
+    subject { firebase }
+
+    it { is_expected.to be_respond_to(:set) }
+    it { is_expected.to be_respond_to(:sample) }
+  end
 end
