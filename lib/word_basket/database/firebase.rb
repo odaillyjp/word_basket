@@ -7,7 +7,7 @@ module WordBasket
       ROOT_NAME = 'words'
       BASE_URL  = "https://#{ENV['FIREBASE_APP_NAME']}.firebaseio.com/"
 
-      def initialize
+      def initialize(*)
         @client = ::Firebase::Client.new(BASE_URL)
       end
 

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'word_basket/database/firebase'
 
 module WordBasket
   describe Word do

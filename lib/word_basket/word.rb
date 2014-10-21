@@ -15,7 +15,7 @@ module WordBasket
     end
 
     def self.sample(query)
-      name = WordBasket.config.database.sample(OpenStruct.new(query))
+      name = WordBasket.configuration.database.sample(OpenStruct.new(query))
       Word.new(name) if name
     end
 
@@ -32,7 +32,7 @@ module WordBasket
     end
 
     def save
-      WordBasket.config.database.set(self)
+      WordBasket.configuration.database.set(self)
     end
 
     private

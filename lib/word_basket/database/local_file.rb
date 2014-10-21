@@ -3,20 +3,18 @@ module WordBasket
     require 'json'
 
     class LocalFile
-      attr_accessor :storage_path
+      APP_ROOT = File.expand_path('../../../', __dir__)
 
-      DEFAULT_FILE_NAME = 'words.json'
-
-      def initialize
-        @storage_path = File.expand_path("../../../../db/#{DEFAULT_FILE_NAME}")
-        @words = load_storage_file
+      def initialize(storage_path: 'db/words.json')
+        @storage_path = [APP_ROOT, storage_path].join('/')
+        @words ||= load_storage_file
       end
 
       def set(data)
         return if @words.any? { |word| word['name'] == data.name }
 
-        @word.push(data.to_h)
-        File.open(storage_path, 'w') { |file| file.write(@words.to_json) }
+        @words.push(data.to_h)
+        File.open(@storage_path, 'w') { |file| file.write(@words.to_json) }
       end
 
       def sample(data)
@@ -28,9 +26,13 @@ module WordBasket
 
       private
 
-      def load_strorage_file
-        File.exist?(storage_path) ? JSON.parse(File.read(storage_path)) : []
+      def load_storage_file
+        File.exist?(@storage_path) ? JSON.parse(File.read(@storage_path)) : []
+      rescue JSON::ParserError
+        fail StorageLoadError, 'データベースファイルの解析に失敗しました。'
       end
+
+      class StorageLoadError < StandardError; end
     end
   end
 

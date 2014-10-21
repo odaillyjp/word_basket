@@ -1,24 +1,23 @@
 module WordBasket
   class Configuration
     attr_reader :database
+    attr_writer :database_adapter, :database_options
 
-    def initialize(*)
-      database ||= 'firebase'
+    def initialize
+      @database_adapter = 'local_file'
+      @database_options = {}
+    end
 
-      configure_database(database)
+    def setting
+      configure_database(@database_adapter)
     end
 
     private
 
-    # db_nameで指定したデータベースを使用可能な状態にする
+    # database_nameで指定したデータベースを使用可能な状態にする
     def configure_database(database_name)
       require_relative("database/#{database_name}")
-      @database = WordBasket::Database.const_get(database_name.classify).new
-    rescue
-      # TODO: エラー処理
-      raise SettingError, 'データベースの設定に失敗しました。'
+      @database = WordBasket::Database.const_get(database_name.classify).new(@database_options)
     end
-
-    class SettingError < StandardError; end
   end
 end

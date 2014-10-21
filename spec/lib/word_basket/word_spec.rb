@@ -5,6 +5,8 @@ module WordBasket
     # public class methods
 
     context '"わーどばすけっと", "わーばす", "ばすけっと" saved' do
+      # TODO: レコードを削除する後処理を入れる
+
       before do
         Word.create('わーどばすけっと')
         Word.create('わーばす')
