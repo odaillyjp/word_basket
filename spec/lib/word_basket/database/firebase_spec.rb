@@ -13,11 +13,7 @@ module WordBasket
     end
   end
 
-  describe Firebase do
-    let(:firebase) { WordBasket::Database::Firebase.new }
-    subject { firebase }
-
-    it { is_expected.to be_respond_to(:set) }
-    it { is_expected.to be_respond_to(:sample) }
+  describe Database::Firebase do
+    it_should_behave_like 'a database strategy', WordBasket::Database::Firebase
   end
 end
