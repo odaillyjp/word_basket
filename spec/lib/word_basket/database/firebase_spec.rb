@@ -14,6 +14,11 @@ module WordBasket
   end
 
   describe Database::Firebase do
+    before do
+      firebase = double(::Firebase::Client)
+      allow(::Firebase::Client).to receive(:new).and_return(firebase)
+    end
+
     it_should_behave_like 'a database strategy', WordBasket::Database::Firebase
   end
 end

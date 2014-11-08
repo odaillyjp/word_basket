@@ -1,8 +1,4 @@
 module WordBasket
-  require 'moji'
-  require 'unf'
-  require 'ostruct'
-
   class Word
     attr_reader :name, :furigana, :head, :last
 

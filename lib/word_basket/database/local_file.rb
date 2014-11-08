@@ -3,8 +3,6 @@ module WordBasket
     require 'json'
 
     class LocalFile
-      APP_ROOT = File.expand_path('../../../', __dir__)
-
       def initialize(storage_path: 'db/words.json')
         @storage_path = [APP_ROOT, storage_path].join('/')
         @words ||= load_storage_file

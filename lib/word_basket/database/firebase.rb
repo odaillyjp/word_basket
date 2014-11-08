@@ -5,10 +5,11 @@ module WordBasket
 
     class Firebase
       ROOT_NAME = 'words'
-      BASE_URL  = "https://#{ENV['FIREBASE_APP_NAME']}.firebaseio.com/"
+      FIREBASE_DOMAIN = 'firebaseio.com'
 
-      def initialize(*)
-        @client = ::Firebase::Client.new(BASE_URL)
+      def initialize(app_name: nil)
+        base_url = "https://#{app_name}.#{FIREBASE_DOMAIN}/"
+        @client = ::Firebase::Client.new(base_url)
       end
 
       def set(data)
