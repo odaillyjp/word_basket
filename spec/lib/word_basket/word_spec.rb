@@ -52,16 +52,6 @@ module WordBasket
 
       # private instance methods
 
-      describe '#include_hira_or_kata_only?'do
-        context 'with "ひらがなカタカナ"' do
-          it { expect(word.send(:include_hira_or_kata_only?, 'ひらがなカタカナ')).to be_truthy }
-        end
-
-        context 'with "かんじ漢字かんじ"' do
-          it { expect(word.send(:include_hira_or_kata_only?, 'かんじ漢字かんじ')).to be_falsy }
-        end
-      end
-
       describe '#convert_to_hira' do
         context 'with "パーフェクト"' do
           it { expect(word.send(:convert_to_hira, 'パーフェクト')).to eq 'ぱーふぇくと' }

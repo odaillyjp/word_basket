@@ -19,7 +19,7 @@ module WordBasket
 
     def initialize(name, furigana = nil)
       # 振り仮名がNullで、かつ単語名に「ひらがな」「カタカナ」以外が含まれている場合は例外発生
-      fail '「振り仮名」が登録されていません。' if furigana.nil? && !include_hira_or_kata_only?(name)
+      fail '「振り仮名」が登録されていません。' if furigana.nil? && !name.include_hira_or_kata_only?
 
       @name     = name
       @furigana = furigana || convert_to_hira(name)
@@ -32,10 +32,6 @@ module WordBasket
     end
 
     private
-
-    def include_hira_or_kata_only?(str)
-      str.chars.all? { |char| Moji.type?(char, Moji::ZEN_HIRA | Moji::ZEN_KATA | Moji::ZEN_JSYMBOL) }
-    end
 
     def convert_to_hira(str)
       Moji.kata_to_hira(str)
