@@ -4,15 +4,15 @@ module WordBasket
 
     # class methods
 
-    def self.create(name)
-      word = Word.new(name)
+    def self.create(name, furigana = nil)
+      word = Word.new(name, furigana)
       word.save
       word
     end
 
     def self.sample(query)
-      name = WordBasket.configuration.database.sample(OpenStruct.new(query))
-      Word.new(name) if name
+      word = WordBasket.configuration.database.sample(OpenStruct.new(query))
+      Word.new(word[:name], word[:furigana]) if word
     end
 
     # instance methods

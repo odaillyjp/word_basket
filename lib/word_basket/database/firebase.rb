@@ -20,7 +20,8 @@ module WordBasket
       def sample(data)
         @words ||= @client.get(ROOT_NAME).body
         return if @words[data.head].nil? || @words[data.head][data.last].nil?
-        @words[data.head][data.last].values.sample['name']
+        word = @words[data.head][data.last].values.sample
+        { name: word['name'], furigana: word['furigana'] }
       end
 
       private

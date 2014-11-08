@@ -19,7 +19,8 @@ module WordBasket
         words = @words.select { |word| word['head'] == data.head && word['last'] == data.last }
 
         return nil if words.empty?
-        words.sample['name']
+        word = words.sample
+        { name: word['name'], furigana: word['furigana'] }
       end
 
       private
