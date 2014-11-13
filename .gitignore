@@ -2,4 +2,3 @@ db/*.json
 vendor/
 config/application.rb
 .bundle/
-.env
