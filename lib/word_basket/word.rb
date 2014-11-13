@@ -20,6 +20,8 @@ module WordBasket
     def initialize(name, furigana = nil)
       # 振り仮名がNullで、かつ単語名に「ひらがな」「カタカナ」以外が含まれている場合は例外発生
       fail '「振り仮名」が登録されていません。' if furigana.nil? && !name.include_hira_or_kata_only?
+      # 振り仮名に「ひらがな」以外が含まれている場合は例外発生
+      fail '「振り仮名」にひらがな以外の文字が含まれています。' if furigana.present? && !furigana.include_hira_only?
 
       @name     = name
       @furigana = furigana || convert_to_hira(name)

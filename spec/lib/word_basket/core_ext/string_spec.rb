@@ -38,4 +38,16 @@ describe String do
       it { expect(str.include_hira_only?).to be_falsy }
     end
   end
+
+  context '"あーあー"という文字を持つとき' do
+    let(:str) { 'あーあー' }
+
+    describe '#include_hira_or_kata_only?'do
+      it { expect(str.include_hira_or_kata_only?).to be_truthy }
+    end
+
+    describe '#include_hira_only?'do
+      it { expect(str.include_hira_only?).to be_truthy }
+    end
+  end
 end

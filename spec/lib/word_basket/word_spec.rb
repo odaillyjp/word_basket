@@ -2,8 +2,6 @@ require 'spec_helper'
 
 module WordBasket
   describe Word do
-    # public class methods
-
     context '"わーどばすけっと", "わーばす", "ばすけっと" saved' do
       # TODO: レコードを削除する後処理を入れる
 
@@ -28,9 +26,7 @@ module WordBasket
       end
     end
 
-    # public instance methods
-
-    context '#new with "ウォーミングアップ"' do
+    context '.new with "ウォーミングアップ"' do
       let(:word) { Word.new('ウォーミングアップ') }
       subject { word }
 
@@ -50,8 +46,6 @@ module WordBasket
         it { expect(word.last).to eq 'ふ' }
       end
 
-      # private instance methods
-
       describe '#convert_to_hira' do
         context 'with "パーフェクト"' do
           it { expect(word.send(:convert_to_hira, 'パーフェクト')).to eq 'ぱーふぇくと' }
@@ -67,6 +61,35 @@ module WordBasket
           it { expect(word.send(:remove_dakuten_from_char, 'ぱ')).to eq 'は' }
         end
       end
+    end
+
+    context '.new with "漢字", "かんじ"' do
+      let(:word) { Word.new('漢字', 'かんじ') }
+      subject { word }
+
+      describe '#name' do
+        it { expect(word.name).to eq '漢字' }
+      end
+
+      describe '#furigana' do
+        it { expect(word.furigana).to eq 'かんじ' }
+      end
+
+      describe '#head' do
+        it { expect(word.head).to eq 'か' }
+      end
+
+      describe '#last' do
+        it { expect(word.last).to eq 'し' }
+      end
+    end
+
+    context '#new with "漢字"' do
+      it { expect { Word.new('漢字', '漢字') }.to raise_error(StandardError) }
+    end
+
+    context '#new with "漢字", "漢字"' do
+      it { expect { Word.new('漢字', '漢字') }.to raise_error(StandardError) }
     end
   end
 end
