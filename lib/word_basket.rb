@@ -1,13 +1,5 @@
-# Ruby Core Extensions
+# WordBasket libraries
 require 'word_basket/core_ext/string'
-require 'active_support/core_ext/string'
-
-# Liblary
-require 'moji'
-require 'unf'
-require 'ostruct'
-
-# WordBasket Liblary
 require 'word_basket/word'
 require 'word_basket/configuration'
 require 'word_basket/controller'

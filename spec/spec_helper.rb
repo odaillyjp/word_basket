@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.require *%i(default test)
+
 $LOAD_PATH.unshift(File.expand_path('../lib/', __dir__))
 require 'word_basket'
 

@@ -1,6 +1,5 @@
 module WordBasket
   module Database
-    require 'firebase'
     require 'uri'
 
     class Firebase

@@ -2,7 +2,7 @@ source 'https://rubygems.org/'
 
 ruby '2.1.3'
 
-gem 'activesupport'
+gem 'activesupport', require: 'active_support/core_ext/string'
 gem 'firebase'
 gem 'moji'
 gem 'unf'
