@@ -25,6 +25,10 @@ describe String do
     describe '#include_hira_only?'do
       it { expect(str.include_hira_only?).to be_falsy }
     end
+
+    describe '#convert_to_hira' do
+      it { expect(str.convert_to_hira).to eq 'ひらがなかたかな' }
+    end
   end
 
   context '"かんじ漢字かんじ"という文字を持つとき' do
@@ -48,6 +52,22 @@ describe String do
 
     describe '#include_hira_only?'do
       it { expect(str.include_hira_only?).to be_truthy }
+    end
+  end
+
+  context '"あいうえおつやゆよぁぃぅぇぉっゃゅょ"という文字を持つとき' do
+    let(:str) { 'あいうえおつやゆよぁぃぅぇぉっゃゅょ' }
+
+    describe '#convert_to_seion' do
+      it { expect(str.convert_to_seion).to eq 'あいうえおつやゆよあいうえおつやゆよ' }
+    end
+  end
+
+  context '"かきくけこ"という文字を持つとき' do
+    let(:str) { 'かきくけこ' }
+
+    describe '#convert_to_boin' do
+      it { expect(str.convert_to_boin).to eq 'あいうえお' }
     end
   end
 end

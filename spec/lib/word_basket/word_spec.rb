@@ -46,12 +46,6 @@ module WordBasket
         it { expect(word.last).to eq 'ふ' }
       end
 
-      describe '#convert_to_hira' do
-        context 'with "パーフェクト"' do
-          it { expect(word.send(:convert_to_hira, 'パーフェクト')).to eq 'ぱーふぇくと' }
-        end
-      end
-
       describe '#remove_dakuten_form_char' do
         context 'with "ざ"' do
           it { expect(word.send(:remove_dakuten_from_char, 'ざ')).to eq 'さ' }
@@ -60,6 +54,49 @@ module WordBasket
         context 'with "ぱ"' do
           it { expect(word.send(:remove_dakuten_from_char, 'ぱ')).to eq 'は' }
         end
+      end
+    end
+
+
+    context '.new with "ルビー"' do
+      let(:word) { Word.new('ルビー') }
+      subject { word }
+
+      describe '#name' do
+        it { expect(word.name).to eq 'ルビー' }
+      end
+
+      describe '#furigana' do
+        it { expect(word.furigana).to eq 'るびー' }
+      end
+
+      describe '#head' do
+        it { expect(word.head).to eq 'る' }
+      end
+
+      describe '#last' do
+        it { expect(word.last).to eq 'い' }
+      end
+    end
+
+    context '.new with "機関車", "きかんしゃ"' do
+      let(:word) { Word.new('機関車', 'きかんしゃ') }
+      subject { word }
+
+      describe '#name' do
+        it { expect(word.name).to eq '機関車' }
+      end
+
+      describe '#furigana' do
+        it { expect(word.furigana).to eq 'きかんしゃ' }
+      end
+
+      describe '#head' do
+        it { expect(word.head).to eq 'き' }
+      end
+
+      describe '#last' do
+        it { expect(word.last).to eq 'や' }
       end
     end
 
