@@ -1,3 +1,5 @@
+using WordBasket::StringExtension
+
 module WordBasket
   class Controller
     require 'pry'

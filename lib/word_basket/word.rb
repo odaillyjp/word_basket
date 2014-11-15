@@ -1,3 +1,5 @@
+using WordBasket::StringExtension
+
 module WordBasket
   class Word
     attr_reader :name, :furigana, :head, :last

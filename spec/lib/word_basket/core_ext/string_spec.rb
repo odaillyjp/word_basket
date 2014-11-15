@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'word_basket/core_ext/string'
 
+using WordBasket::StringExtension
+
 describe String do
   context '"ひらがな"という文字を持つとき' do
     let(:str) { 'ひらがな' }
