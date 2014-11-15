@@ -13,13 +13,15 @@ module WordBasket
       loop { break if @input_value = receive_hira }
 
       @input_value.chars.each_cons(2).each do |head, last|
-        puts WordBasket::Word.sample(head: head, last: last).name
+        word = WordBasket::Word.sample(head: head, last: last)
+        puts "'#{head}' => '#{last}', 言葉: '#{word.name}', 読み: '#{word.furigana}'"
       end
     end
 
     private
 
     def receive_hira
+      print '> '
       chars = gets.chomp
       raise InputMojiTypeError unless chars.hira_only?
       chars
