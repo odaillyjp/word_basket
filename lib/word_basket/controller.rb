@@ -21,7 +21,7 @@ module WordBasket
 
     def receive_hira
       chars = gets.chomp
-      raise InputMojiTypeError unless chars.include_hira_only?
+      raise InputMojiTypeError unless chars.hira_only?
       chars
     rescue InputMojiTypeError
       puts '「ひらがな」を入力してください。'
