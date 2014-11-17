@@ -2,8 +2,6 @@ using WordBasket::StringExtension
 
 module WordBasket
   class Controller
-    require 'pry'
-
     def initialize
       @input_value = nil
     end
