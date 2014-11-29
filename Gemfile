@@ -1,7 +1,5 @@
 source 'https://rubygems.org/'
 
-ruby '2.1.5'
-
 gem 'activesupport', require: 'active_support/core_ext/string'
 gem 'firebase'
 gem 'moji'
