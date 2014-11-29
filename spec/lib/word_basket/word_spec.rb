@@ -45,18 +45,7 @@ module WordBasket
       describe '#last' do
         it { expect(word.last).to eq 'ふ' }
       end
-
-      describe '#remove_dakuten_form_char' do
-        context 'with "ざ"' do
-          it { expect(word.send(:remove_dakuten_from_char, 'ざ')).to eq 'さ' }
-        end
-
-        context 'with "ぱ"' do
-          it { expect(word.send(:remove_dakuten_from_char, 'ぱ')).to eq 'は' }
-        end
-      end
     end
-
 
     context '.new with "ルビー"' do
       let(:word) { Word.new('ルビー') }

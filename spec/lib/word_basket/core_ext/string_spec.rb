@@ -14,6 +14,10 @@ describe String do
     describe '#hira_only?'do
       it { expect(str.hira_only?).to be_truthy }
     end
+
+    describe '#convert_dakuten_to_seion' do
+      it { expect(str.convert_dakuten_to_seion).to eq 'ひらかな' }
+    end
   end
 
 
@@ -28,8 +32,8 @@ describe String do
       it { expect(str.hira_only?).to be_falsy }
     end
 
-    describe '#convert_to_hira' do
-      it { expect(str.convert_to_hira).to eq 'ひらがなかたかな' }
+    describe '#convert_kata_to_hira' do
+      it { expect(str.convert_kata_to_hira).to eq 'ひらがなかたかな' }
     end
   end
 
@@ -60,8 +64,8 @@ describe String do
   context '"あいうえおつやゆよぁぃぅぇぉっゃゅょ"という文字を持つとき' do
     let(:str) { 'あいうえおつやゆよぁぃぅぇぉっゃゅょ' }
 
-    describe '#convert_to_seion' do
-      it { expect(str.convert_to_seion).to eq 'あいうえおつやゆよあいうえおつやゆよ' }
+    describe '#convert_sutegana_to_seion' do
+      it { expect(str.convert_sutegana_to_seion).to eq 'あいうえおつやゆよあいうえおつやゆよ' }
     end
   end
 

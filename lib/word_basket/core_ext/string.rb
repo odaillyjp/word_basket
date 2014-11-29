@@ -13,20 +13,25 @@ module WordBasket
         self.chars.all? { |char| Moji.type?(char, Moji::ZEN_HIRA | Moji::ZEN_JSYMBOL) }
       end
 
+      # 濁点や半濁点を清音に変換する
+      def convert_dakuten_to_seion
+        self.chars.map { |char| char.to_nfd.split('').first }.join
+      end
+
       # 「カタカナ」を「ひらがな」に変換する
-      def convert_to_hira
+      def convert_kata_to_hira
         Moji.kata_to_hira(self)
       end
 
-      # 拗音や促音を静音に変換する
+      # 捨て仮名を清音に変換する
       # 注意: 「カタカナ」は未対応
-      def convert_to_seion
+      def convert_sutegana_to_seion
         syllables = {
-          yoon:  'ぁぃぅぇぉっゃゅょ',
-          seion: 'あいうえおつやゆよ'
+          sutegana: 'ぁぃぅぇぉっゃゅょゎ',
+          seion:    'あいうえおつやゆよわ'
         }
 
-        self.tr(syllables[:yoon], syllables[:seion])
+        self.tr(syllables[:sutegana], syllables[:seion])
       end
 
       # 母音に変換する
