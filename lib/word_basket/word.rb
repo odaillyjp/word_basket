@@ -40,6 +40,8 @@ module WordBasket
         @furigana[-1].convert_sutegana_to_seion
           .convert_dakuten_to_seion
       end
+
+      fail '「ん」で終わる単語は登録できません。' if @last == 'ん'
     end
 
     def save
