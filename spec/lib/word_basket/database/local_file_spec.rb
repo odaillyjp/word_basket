@@ -20,6 +20,7 @@ module WordBasket
   end
 
   describe Database::LocalFile do
+    let(:options) { WordBasket.configuration.database_options }
     it_should_behave_like 'a database strategy', WordBasket::Database::LocalFile
   end
 end

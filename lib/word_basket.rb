@@ -6,7 +6,6 @@ require 'word_basket/controller'
 
 module WordBasket
   VERSION = '1.0.0'
-  APP_ROOT = File.expand_path('../', __dir__)
 
   def self.configuration
     @configuration ||= WordBasket::Configuration.new

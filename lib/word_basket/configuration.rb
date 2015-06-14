@@ -1,7 +1,7 @@
 module WordBasket
   class Configuration
     attr_reader :database
-    attr_writer :database_adapter, :database_options
+    attr_accessor :database_adapter, :database_options
 
     def initialize
       @database_adapter = 'local_file'

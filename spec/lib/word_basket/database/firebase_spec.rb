@@ -14,6 +14,8 @@ module WordBasket
   end
 
   describe Database::Firebase do
+    let(:options) { { app_name: '' } }
+
     before do
       firebase = double(::Firebase::Client)
       allow(::Firebase::Client).to receive(:new).and_return(firebase)
